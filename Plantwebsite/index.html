@@ -1,0 +1,2119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greenery - Indoor Plant Paradise</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a472a;
+            --primary-light: #60ad5e;
+            --primary-dark: #005005;
+            --secondary: #ffd54f;
+            --background: #f8f9fa;
+            --hero-background: #e8f3e8;
+            --text: #333;
+            --card-bg: #fff;
+            --accent: #ff6f00;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: transparent;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            padding: 1rem 0;
+        }
+
+        .navbar.scrolled {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease, transform 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            transform: scaleX(1);
+        }
+
+        .nav-link {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nav-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: var(--text);
+            transition: color 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            color: var(--primary);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+        }
+
+        /* Hero Section Styles */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            padding-top: 80px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%; 
+            height: 100%;
+            background-color: #e8f3e8;
+            z-index: -1;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40%; 
+            height: 100%;
+            background-color: white;
+            z-index: -1;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            line-height: 1.2;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            color: var(--text);
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-secondary:hover {
+            color: var(--primary);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+        }
+
+        .stat {
+            position: relative;
+        }
+
+        .stat:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: -1.5rem;
+            top: 0;
+            height: 100%;
+            width: 1px;
+            background-color: var(--text);
+            opacity: 0.2;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text);
+            font-size: 1rem;
+        }
+
+        .hero-image {
+            position: relative;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            max-width: 500px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        /* Collections Section Styles */
+        .collections {
+            padding: 6rem 0;
+            background-color: var(--background);
+        }
+
+        .collection-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .collection-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .collection-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .collection-image {
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .collection-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .collection-card:hover .collection-image img {
+            transform: scale(1.1);
+        }
+
+        .collection-content {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .collection-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .collection-content p {
+            color: var(--text);
+            margin-bottom: 1rem;
+        }
+
+        .btn-outline {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        /* Products Section Styles */
+        .products {
+            padding: 6rem 0;
+            background-color: var(--background);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .product-card {
+            position: relative;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .product-image {
+            height: 250px;
+            position: relative;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: var(--primary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        .product-content {
+            padding: 1.5rem;
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .product-price {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .product-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .product-card:hover .product-overlay {
+            opacity: 1;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .product-action-btn {
+            background: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover .product-action-btn {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .product-action-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .product-card:hover .product-action-btn:nth-child(2) {
+            transition-delay: 0.1s;
+        }
+
+        .product-card:hover .product-action-btn:nth-child(3) {
+            transition-delay: 0.2s;
+        }
+
+        .product-details {
+            padding: 1.5rem;
+            background: white;
+        }
+
+        .product-category {
+            font-size: 0.875rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .rating-stars {
+            color: #ffd700;
+        }
+
+        .rating-count {
+            font-size: 0.875rem;
+            color: var(--text);
+        }
+
+
+        /* Update the author-image styles in the testimonials section */
+.author-image {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid var(--primary);
+  flex-shrink: 0; /* Add this line */
+}
+
+.author-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Add this line */
+}
+
+/* Adjust the testimonial-author layout */
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* Reduce gap for better spacing */
+}
+
+.author-info {
+  flex-grow: 1; /* Allow author info to take remaining space */
+}
+
+/* Ensure the testimonial card has enough width for the content */
+.testimonial-card {
+  min-width: 300px; /* Reduce minimum width slightly */
+  max-width: 400px; /* Add a maximum width */
+  width: 100%; /* Ensure it takes full width up to the max-width */
+}
+
+/* Adjust the testimonial grid for better responsiveness */
+.testimonial-grid {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem 0;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  margin: 0 -1rem; /* Negative margin to allow full width scrolling */
+  padding: 0 1rem; /* Add padding to offset the negative margin */
+}
+
+/* Testimonials Section */
+.testimonials {
+  padding: 6rem 0;
+  background: linear-gradient(to bottom, white, var(--hero-background));
+  overflow: hidden;
+}
+
+.testimonial-grid {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem 0;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+  margin: 0 -1rem; /* Negative margin to allow full width scrolling */
+  padding: 0 1rem; /* Add padding to offset the negative margin */
+}
+
+.testimonial-grid::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+
+.testimonial-card {
+  min-width: 300px; /* Reduce minimum width slightly */
+  max-width: 400px; /* Add a maximum width */
+  width: 100%; /* Ensure it takes full width up to the max-width */
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  scroll-snap-align: start;
+  transform: translateY(100px);
+  opacity: 0;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.testimonial-card.visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.testimonial-content {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  position: relative;
+  padding-left: 2rem;
+}
+
+.testimonial-content::before {
+  content: '"';
+  font-size: 4rem;
+  color: var(--primary);
+  position: absolute;
+  top: -1rem;
+  left: -1rem;
+  opacity: 0.2;
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* Reduce gap for better spacing */
+}
+
+.author-image {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid var(--primary);
+  flex-shrink: 0; /* Add this line */
+}
+
+.author-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+}
+
+.author-info {
+  flex-grow: 1; /* Allow author info to take remaining space */
+}
+
+.author-info h4 {
+  font-size: 1.2rem;
+  color: var(--primary);
+  margin-bottom: 0.25rem;
+}
+
+.author-info p {
+  color: var(--text);
+  font-size: 0.9rem;
+}
+
+.testimonial-nav {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.testimonial-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--primary);
+  opacity: 0.3;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.testimonial-dot.active {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+        /* FAQ Section Styles */
+        .faq {
+            padding: 6rem 0;
+            background-color: var(--background);
+        }
+
+        .faq-grid {
+            display: grid;
+            gap: 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            background: white;
+            transition: background-color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background-color: rgba(0, 0, 0, 0.02);
+        }
+
+        .faq-question h3 {
+            font-size: 1.1rem;
+            color: var(--primary);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            max-height: 1000px;
+        }
+
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Footer Styles */
+        .footer {
+            background: linear-gradient(to bottom right, var(--primary-dark), var(--primary));
+            color: white;
+            padding: 6rem 0 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M54.627 0l.83.828-1.415 1.415L51.8 0h2.827zM5.373 0l-.83.828L5.96 2.243 8.2 0H5.374zM48.97 0l3.657 3.657-1.414 1.414L46.143 0h2.828zM11.03 0L7.372 3.657 8.787 5.07 13.857 0H11.03zm32.284 0L49.8 6.485 48.384 7.9l-7.9-7.9h2.83zM16.686 0L10.2 6.485 11.616 7.9l7.9-7.9h-2.83zM22.343 0L13.857 8.485 15.272 9.9l7.9-7.9h-.83zm5.657 0L19.514 8.485 20.93 9.9 30.3 0h-2.3zM32.686 0L26.2 6.485 27.616 7.9l7.9-7.9h-2.83zm5.657 0L29.857 8.485 31.272 9.9l7.9-7.9h-.83zm5.657 0L34.514 8.485 35.93 9.9l7.9-7.9h-2.3zm5.657 0L40.17 8.485l1.415 1.415 7.9-7.9h-2.83zm5.657 0L45.827 8.485l1.415 1.415L54.627 0h-2.83zM0 5.373l.828.83L2.243 5.96 0 2.828v2.545zm0 5.657l.828.83L2.243 11.6 0 8.485v2.545zm0 5.657l.828.83L2.243 17.256 0 14.14v2.544zm0 5.657l.828.83L2.243 22.912 0 19.8v2.544zm0 5.657l.828.83L2.243 28.57 0 25.456v2.545zm0 5.657l.828.83L2.243 34.227 0 31.113V33.66zm0 5.657l.828.83L2.243 39.884 0 36.77v2.545zm0 5.657l.828.83L2.243 45.54 0 42.428v2.545zm0 5.657l.828.83L2.243 51.198 0 48.084v2.545zm0 5.657l.828.83L2.243 56.854 0 53.74v2.545zm0 5.657l.828.83L2.243 62.51 0 59.397v2.545zm5.373 5.657l.83-.828L5.96 57.757 2.828 60h2.545zm5.657 0l.83-.828L11.616 57.757 8.485 60h2.545zm5.657 0l.83-.828-1.415-1.415L13.857 60h2.544zm5.657 0l.83-.828-1.415-1.415L19.514 60h2.544zm5.657 0l.83-.828-1.415-1.415L25.17 60h2.545zm5.657 0l.83-.828-1.415-1.415L30.828 60h2.545zm5.657 0l.83-.828-1.415-1.415L36.485 60h2.545zm5.657 0l.83-.828-1.415-1.415L42.14 60h2.544zm5.657 0l.83-.828-1.415-1.415L47.8 60h2.545zm5.657 0l.83-.828-1.415-1.415L53.456 60h2.545zm5.657 0l.83-.828-1.415-1.415L59.112 60h2.545z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+
+        .footer-content {
+            position: relative;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-section {
+            position: relative;
+        }
+
+        .footer-section h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--secondary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .footer-links a::before {
+            content: '→';
+            margin-right: 0.5rem;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover::before {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .social-links a:hover {
+            background: white;
+            color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.8rem 1.2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-form input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .newsletter-form button {
+            padding: 0.8rem 1.5rem;
+            background: var(--secondary);
+            border: none;
+            border-radius: 5px;
+            color: var(--primary);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-form button:hover {
+            background: white;
+            transform: translateY(-2px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 3rem;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-cta {
+                justify-content: center;
+            }
+
+            .hero-stats {
+                justify-content: center;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                padding: 1rem;
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+                background: none;
+                border: none;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+        }
+
+        /* Services Section Styles */
+        .services {
+            padding: 6rem 0;
+            background-color: white;
+            background: linear-gradient(to bottom, white, var(--hero-background));
+        }
+
+        .service-card {
+            position: relative;
+            background: white;
+            border-radius: 15px;
+            padding: 2.5rem;
+            margin: 1rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left0;
+            width: 100%;
+            height: 4px;
+            background: var(--primary);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--hero-background);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, var(--hero-background), white);
+            transform: translateZ(20px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-card h3 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin: 1rem 0;
+            transform: translateZ(15px);
+        }
+
+        .service-card p {
+            color: var(--text);
+            margin-bottom: 1.5rem;
+            transform: translateZ(10px);
+        }
+
+        .btn-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary);
+            text-decoration: none;
+            margin-top: 1rem;
+            font-weight: 600;
+            transform: translateZ(15px);
+        }
+
+        .btn-link:hover {
+            color: var(--primary-dark);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+
+        /* Quick View Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            max-width: 800px;
+            width: 90%;
+            position: relative;
+            animation: modalSlideIn 0.3s ease;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            font-size: 1.5rem;
+            color: var(--text);
+        }
+
+        .modal-close:hover {
+            background: var(--primary);
+            color: white;
+            transform: rotate(90deg);
+        }
+
+        .modal-product {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .modal-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .modal-image img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .modal-image:hover img {
+            transform: scale(1.1);
+        }
+
+        .modal-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            padding: 2rem;
+        }
+
+        .modal-info h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .modal-info .product-price {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-description {
+            color: var(--text);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .quantity-control input {
+            width: 60px;
+            height: 40px;
+            text-align: center;
+            border: 1px solid var(--primary);
+            border-radius: 8px;
+            font-size: 1.1rem;
+        }
+
+        .quantity-btn {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--primary);
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .quantity-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            text-align: center;
+            color: var(--text);
+            max-width: 600px;
+            margin: 0 auto 4rem;
+        }
+
+        /* Updated Contact Section Styles */
+        #contact {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, var(--hero-background) 0%, #ffffff 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #contact::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            width: 200px;
+            height: 200px;
+            background: url('https://w7.pngwing.com/pngs/655/293/png-transparent-plant-tendril-vine-free-vector-graphics.png') no-repeat center center;
+            background-size: contain;
+            opacity: 0.1;
+            transform: rotate(45deg);
+        }
+
+        #contact::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background: url('https://w7.pngwing.com/pngs/655/293/png-transparent-plant-tendril-vine-free-vector-graphics.png') no-repeat center center;
+            background-size: contain;
+            opacity: 0.1;
+            transform: rotate(-135deg);
+        }
+
+        .contact-content {
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .contact-form,
+        .contact-info {
+            flex: 1;
+            padding: 3rem;
+        }
+
+        .contact-form {
+            background: white;
+        }
+
+        .contact-info {
+            background: var(--primary);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-form h3,
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .contact-info h3 {
+            color: white;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(26, 71, 42, 0.1);
+        }
+
+        .submit-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-info p {
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .contact-info i {
+            margin-right: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .social-links {
+            margin-top: 2rem;
+        }
+
+        .contact-info .social-links {
+             display: flex;
+             gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+.contact-info .social-links a {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative; /* Add this */
+}
+
+.contact-info .social-links a:hover {
+    background: white;
+    color: var(--primary);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.contact-info .social-links i {
+    position: absolute; /* Add this */
+    top: 50%; /* Add this */
+    left: 50%; /* Add this */
+    transform: translate(-50%, -50%); /* Add this */
+    font-size: 1.2rem;
+    line-height: 1; /* Add this */
+}
+
+/* Ensure proper spacing in contact info section */
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.contact-info p {
+    margin-bottom: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.contact-info p i {
+    width: 20px;
+    text-align: center;
+}
+
+        @media (max-width: 768px) {
+            .contact-content {
+                flex-direction: column;
+            }
+            .contact-form,
+            .contact-info {
+                padding: 2rem;
+            }
+        }
+
+        /* Center align buttons */
+        .section-cta {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .section-cta .btn {
+            display: inline-block;
+            margin: 0 0.5rem;
+        }
+        /* Add smooth scrolling to the entire page */
+/* Scrolling Animation Styles */
+        .scroll-animation {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .scroll-animation.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Ensure smooth scrolling for the whole page */
+        html {
+            scroll-behavior: smooth;
+        }
+/* Enhanced modal animations */
+.modal-content {
+  animation: modalSlideIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container navbar-container">
+            <a href="#" class="logo">Greenery</a>
+            <div class="nav-links">
+                <a href="#" class="nav-link">Home</a>
+                <a href="#services" class="nav-link">Services</a>
+                <a href="#collections" class="nav-link">Collections</a>
+                <a href="#products" class="nav-link">Products</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-actions">
+                <button class="nav-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+                <button class="nav-btn">
+                    <i class="fas fa-user"></i>
+                </button>
+                <button class="nav-btn">
+                    <i class="fas fa-shopping-bag"></i>
+                </button>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Indoor Plant<br>Decor Paradise</h1>
+                    <p>Bringing Nature's Beauty Inside Your Home</p>
+                    <div class="hero-cta">
+                        <a href="#" class="btn btn-primary">Shop Now</a>
+                        <a href="#" class="btn btn-secondary">
+                            <i class="fas fa-play"></i>
+                            Watch Video
+                        </a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <div class="stat-number">160+</div>
+                            <div class="stat-label">Plant species</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">150+</div>
+                            <div class="stat-label">Clients</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot_2025-01-29_000654-removebg-preview-HLyzma4Pm6o9EUgzNHCWIPnB7xtlKC.png" alt="Beautiful potted plant with pink flowers">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <p class="section-subtitle">Expert plant care and maintenance services</p>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Plant Consultation</h3>
+                    <p>Get expert advice on plant selection and care tailored to your space and lifestyle.</p>
+                    <a href="#" class="btn btn-link">Learn More →</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>Interior Styling</h3>
+                    <p>Professional plant styling services to enhance your home or office space.</p>
+                    <a href="#" class="btn btn-link">Learn More →</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Maintenance</h3>
+                    <p>Regular plant care and maintenance services to keep your plants healthy.</p>
+                    <a href="#" class="btn btn-link">Learn More →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="collections" class="collections">
+        <div class="container">
+            <h2 class="section-title">Our Collections</h2>
+            <p class="section-subtitle">Discover our carefully curated plant collections</p>
+            <div class="collection-grid">
+                <div class="collection-card">
+                    <div class="collection-image">
+                        <img src="https://images.unsplash.com/photo-1463320726281-696a485928c7" alt="Indoor Plants">
+                    </div>
+                    <div class="collection-content">
+                        <h3>Indoor Plants</h3>
+                        <p>Perfect for any room</p>
+                        <a href="#" class="btn btn-outline">Explore</a>
+                    </div>
+                </div>
+                <div class="collection-card">
+                    <div class="collection-image">
+                        <img src="https://images.unsplash.com/photo-1509423350716-97f9360b4e09" alt="Succulents">
+                    </div>
+                    <div class="collection-content">
+                        <h3>Succulents</h3>
+                        <p>Low maintenance beauty</p>
+                        <a href="#" class="btn btn-outline">Explore</a>
+                    </div>
+                </div>
+                <div class="collection-card">
+                    <div class="collection-image">
+                        <img src="https://images.unsplash.com/photo-1459156212016-c812468e2115" alt="Air Plants">
+                    </div>
+                    <div class="collection-content">
+                        <h3>Air Plants</h3>
+                        <p>No soil needed</p>
+                        <a href="#" class="btn btn-outline">Explore</a>
+                    </div>
+                </div>
+            </div>
+            <div class="section-cta">
+                <a href="#" class="btn btn-primary">View All Collections</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="products" class="products">
+        <div class="container">
+            <h2 class="section-title">Featured Products</h2>
+            <p class="section-subtitle">Discover our collection of beautiful plants</p>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1485955900006-10f4d324d411" alt="Monstera Plant">
+                        <div class="product-overlay">
+                            <div class="product-actions">
+                                <button class="product-action-btn" onclick="quickView(1)">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="product-action-btn">
+                                    <i class="fas fa-heart"></i>
+                                </button>
+                                <button class="product-action-btn">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <div class="product-category">Indoor Plants</div>
+                        <h3 class="product-title">Monstera Deliciosa</h3>
+                        <p class="product-price">$65.00</p>
+                        <div class="product-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-count">(24)</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://www.thespruce.com/thmb/SsHaPRyZppWJ-ZHmbKhl_vdBWBo=/2048x0/filters:no_upscale():max_bytes(150000):strip_icc()/snake-plant-care-overview-1902772-04-d3990a1d0e1d4202a824e929abb12fc1-349b52d646f04f31962707a703b94298.jpeg" alt="Snake Plant">
+                        <div class="product-overlay">
+                            <div class="product-actions">
+                                <button class="product-action-btn" onclick="quickView(2)">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="product-action-btn">
+                                    <i class="fas fa-heart"></i>
+                                </button>
+                                <button class="product-action-btn">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <div class="product-category">Indoor Plants</div>
+                        <h3 class="product-title">Snake Plant</h3>
+                        <p class="product-price">$45.00</p>
+                        <div class="product-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-count">(32)</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="product-badge">Sale</span>
+                        <img src="https://www.ugaoo.com/cdn/shop/products/DSC_8818.jpg?v=1704867612&width=1500" alt="Peace Lily">
+                        <div class="product-overlay">
+                            <div class="product-actions">
+                                <button class="product-action-btn" onclick="quickView(3)">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="product-action-btn">
+                                    <i class="fas fa-heart"></i>
+                                </button>
+                                <button class="product-action-btn">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <div class="product-category">Indoor Plants</div>
+                        <h3 class="product-title">Peace Lily</h3>
+                        <p class="product-price">$35.00</p>
+                        <div class="product-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-count">(18)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section-cta">
+                <a href="#" class="btn btn-primary">View All Products</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick View Modal -->
+    <div class="modal" id="quickViewModal">
+        <div class="modal-content">
+            <button class="modal-close">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-product">
+                <div class="modal-image">
+                    <img src="/placeholder.svg" alt="Product Image" id="modalImage">
+                </div>
+                <div class="modal-info">
+                    <h2 id="modalTitle"></h2>
+                    <div class="quantity-control">
+                        <button class="quantity-btn" onclick="updateQuantity(-1)">-</button>
+                        <input type="number" id="quantity" value="1" min="1" max="99">
+                        <button class="quantity-btn" onclick="updateQuantity(1)">+</button>
+                    </div>
+                    <p id="modalPrice"></p>
+                    <div class="modal-description">
+                        <p id="modalDescription"></p>
+                    </div>
+                    <div class="modal-actions">
+                        <button class="btn btn-primary">Add to Cart</button>
+                        <button class="btn btn-secondary">Add to Wishlist</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our Customers Say</h2>
+            <p class="section-subtitle">Real experiences from plant lovers</p>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        The quality of plants I received was exceptional. They arrived in perfect condition and have been thriving in my home.
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <img src="https://live.staticflickr.com/5252/5403292396_0804de9bcf_b.jpg" alt="Sarah Johnson">
+                        </div>
+                        <div class="author-info">
+                            <h4>Sarah Johnson</h4>
+                            <p>Plant Enthusiast</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        The customer service is outstanding. They helped me choose the perfect plants for my space and provided great care tips.
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <img src="https://plus.unsplash.com/premium_photo-1689530775582-83b8abdb5020?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cmFuZG9tJTIwcGVyc29ufGVufDB8fDB8fHww" alt="Michael Chen">
+                        </div>
+                        <div class="author-info">
+                            <h4>Michael Chen</h4>
+                            <p>Home Designer</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        I'm amazed by how my plants have transformed my living space. The selection and quality are unmatched.
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <img src="https://media.istockphoto.com/id/1466995518/photo/business-woman-and-worker-portrait-at-office-desk-as-administration-executive-company-manager.jpg?s=612x612&w=0&k=20&c=NvKeG6Fh0_VVfH_N0Ka-5j8284XJhL2VTJfe6IwDkWQ=" alt="Emma Davis">
+                        </div>
+                        <div class="author-info">
+                            <h4>Emma Davis</h4>
+                            <p>Interior Decorator</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-nav">
+                <span class="testimonial-dot active"></span>
+                <span class="testimonial-dot"></span>
+                <span class="testimonial-dot"></span>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <p class="section-subtitle">Find answers to common questions</p>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How often should I water my plants?</h3>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Watering frequency depends on the plant species, pot size, and environmental conditions. Generally, most indoor plants need watering when the top 1-2 inches of soil feels dry.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Do you offer plant care advice?</h3>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! We provide detailed care instructions with every purchase and our expert team is always available for consultation.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What is your shipping policy?</h3>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We ship nationwide with carefully packaged plants to ensure they arrive in perfect condition. Orders typically arrive within 3-5 business days.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Do you offer returns?</h3>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We have a 30-day return policy for plants that arrive damaged or unhealthy. Contact our customer service team within 24 hours of delivery for assistance.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Are your plants pet-friendly?</h3>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We clearly label all our plants as pet-friendly or not. Look for the "Pet Safe" badge on product pages, or ask our team for recommendations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<section id="contact">
+        <div class="container">
+            <h2 class="section-title scroll-animation">Get in Touch</h2>
+            <p class="section-subtitle scroll-animation">We'd love to hear from you</p>
+            <div class="contact-content scroll-animation">
+                <div class="contact-form">
+                    <h3>Send us a message</h3>
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+                <div class="contact-info">
+            <div>
+        <h3>Contact Information</h3>
+        <p><i class="fas fa-map-marker-alt"></i> 123 Plant Street, Green City, 12345</p>
+        <p><i class="fas fa-phone"></i> (123) 456-7890</p>
+        <p><i class="fas fa-envelope"></i> info@greenery.com</p>
+    </div>
+    <div class="social-links">
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+    </div>
+</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Greenery</h3>
+                    <p>123 Plant Street<br>Green City, 12345</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Shop</a></li>
+                        <li><a href="#">Plant Care</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Customer Service</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Shipping Policy</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Track Order</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe for plant care tips and exclusive offers</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter your email">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 Greenery. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = mobileMenuBtn.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        // FAQ accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+
+                // Close all FAQ items
+                faqItems.forEach(faqItem => {
+                    faqItem.classList.remove('active');
+                });
+
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+                // Close mobile menu if open
+                navLinks.classList.remove('active');
+                const icon = mobileMenuBtn.querySelector('i');
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
+            });
+        });
+
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+
+
+        // Observe all cards for animation
+        document.querySelectorAll('.collection-card, .product-card, .testimonial-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Quick View functionality
+        function quickView(productId) {
+            const modal = document.getElementById('quickViewModal');
+            const modalImage = document.getElementById('modalImage');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalPrice = document.getElementById('modalPrice');
+            const modalDescription = document.getElementById('modalDescription');
+
+            // In a real application, you would fetch this data from your backend
+            const productData = {
+                1: {
+                    title: 'Monstera Deliciosa',
+                    price: '$65.00',
+                    description: 'The Monstera Deliciosa, also known as the Swiss Cheese Plant, is famous for its quirky natural leaf holes. This tropical beauty can transform any interior with its statement leaves.',
+                    image: 'https://images.unsplash.com/photo-1485955900006-10f4d324d411'
+                },
+                2: {
+                    title: 'Snake Plant',
+                    price: '$45.00',
+                    description: 'The Snake Plant, also known as Mother-in-Law\'s Tongue, is a popular choice for its hardiness and air-purifying qualities.  Its striking upright leaves add a modern touch to any space.',
+                    image: 'https://www.thespruce.com/thmb/SsHaPRyZppWJ-ZHmbKhl_vdBWBo=/2048x0/filters:no_upscale():max_bytes(150000):strip_icc()/snake-plant-care-overview-1902772-04-d3990a1d0e1d4202a824e929abb12fc1-349b52d646f04f31962707a703b94298.jpeg'
+                },
+                3: {
+                    title: 'Peace Lily',
+                    price: '$35.00',
+                    description: 'The Peace Lily is known for its elegant white flowers and air-purifying abilities. This low-maintenance plant adds a touch of sophistication to any room.',
+                    image: 'https://sjc.microlink.io/Vw-DIAuucnuzG63VzRuOAKlEFYecDG1bn-jyNGDi-4-jej3OO1yLWO3Z7cChvNL0j6DMHCwdNdxNrdUc9Q97zA.jpeg'
+                }
+                // Add more products as needed
+            };
+
+            const product = productData[productId];
+
+            modalImage.src = product.image;
+            modalTitle.textContent = product.title;
+            modalPrice.textContent = product.price;
+            modalDescription.textContent = product.description;
+
+            modal.classList.add('active');
+        }
+
+        // Close modal when clicking outside or on close button
+        document.querySelector('.modal-close').addEventListener('click', () => {
+            document.getElementById('quickViewModal').classList.remove('active');
+        });
+
+        document.getElementById('quickViewModal').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) {
+                e.target.classList.remove('active');
+            }
+        });
+
+        // Add hover effect for service cards
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-10px)';
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+
+        function updateQuantity(change) {
+            const input = document.getElementById('quantity');
+            let value = parseInt(input.value) + change;
+            value = Math.max(1, Math.min(99, value));
+            input.value = value;
+        }
+
+        // Testimonial navigation
+        const testimonialDots = document.querySelectorAll('.testimonial-dot');
+        const testimonialGrid = document.querySelector('.testimonial-grid');
+        const testimonialCards = document.querySelectorAll('.testimonial-card');
+
+        testimonialDots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                // Update active dot
+                testimonialDots.forEach(d => d.classList.remove('active'));
+                dot.classList.add('active');
+
+                // Scroll to corresponding testimonial
+                const card = testimonialCards[index];
+                testimonialGrid.scrollTo({
+                    left: card.offsetLeft,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Update dots on scroll
+        testimonialGrid.addEventListener('scroll', () => {
+            const scrollPosition = testimonialGrid.scrollLeft;
+            const cardWidth = testimonialCards[0].offsetWidth + 32; // Including gap
+            const activeIndex = Math.round(scrollPosition / cardWidth);
+
+            testimonialDots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === activeIndex);
+            });
+        });
+
+        // New Contact Form Handling
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Here you would typically send the form data to a server
+            alert('Thank you for your message! We will get back to you soon.');
+            this.reset();
+        });
+
+        // Scrolling Animation
+        function handleScrollAnimation() {
+            const elements = document.querySelectorAll('.scroll-animation');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            elements.forEach(element => {
+                observer.observe(element);
+            });
+        }
+
+        // Call the animation function when the page loads
+        window.addEventListener('load', handleScrollAnimation);
+    </script>
+</body>
+</html>
+
